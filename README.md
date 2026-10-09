@@ -93,3 +93,16 @@ Implemented in `evaluation.py`. For K = 2 to 8, K-Means is evaluated with:
 Run it with `python evaluation.py`.
 
 **Findings:** Both silhouette (0.50) and Calinski-Harabasz (230.88) are highest at K = 6, although the data was generated with 3 customer groups. The extra clusters appear because the random Gender feature splits each group into two. K = 3 scores lower (silhouette 0.39) but gives the most meaningful business segments.
+## Visualization
+
+Implemented in `visualization.py`. The 5 scaled features are reduced to 2 dimensions so the customer segments can be plotted:
+
+- **PCA** (`images/pca_clusters.png`): the first two components explain about 85% of the variance (PC1 = 64.7%, PC2 = 20.1%).
+- **t-SNE** (`images/tsne_clusters.png`): shows the local structure of the data.
+
+Run it with `python visualization.py`.
+
+**Findings:** The t-SNE chart shows six compact blobs, two for each K-Means cluster. This is because the random Gender feature splits every customer group into two, which also explains why the metrics favor K = 6.
+
+![PCA](images/pca_clusters.png)
+![t-SNE](images/tsne_clusters.png)
