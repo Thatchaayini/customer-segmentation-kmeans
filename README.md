@@ -81,3 +81,15 @@ With K = 3, the customers split into three segments:
 1. Install packages: `pip install -r requirements.txt`
 2. Run the full pipeline: `python main.py`
 3. Run all tests: `pytest -v`
+## Evaluation Metrics
+
+Implemented in `evaluation.py`. For K = 2 to 8, K-Means is evaluated with:
+
+- **Silhouette score** (higher is better, range -1 to 1)
+- **Calinski-Harabasz index** (higher is better)
+- **Davies-Bouldin index** (lower is better)
+- **Inertia** (used for the Elbow method)
+
+Run it with `python evaluation.py`.
+
+**Findings:** Both silhouette (0.50) and Calinski-Harabasz (230.88) are highest at K = 6, although the data was generated with 3 customer groups. The extra clusters appear because the random Gender feature splits each group into two. K = 3 scores lower (silhouette 0.39) but gives the most meaningful business segments.
