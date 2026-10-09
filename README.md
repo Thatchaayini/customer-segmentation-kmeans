@@ -38,4 +38,46 @@ Implemented in `preprocess.py`:
 
 Implemented in `validate.py`. Before clustering, it checks for required columns, missing values, non-numeric and infinite values, negative values, enough rows for K clusters, and correct scaling (mean about 0, std about 1).
 
+## Project Structure
+
+| File | Purpose |
+|---|---|
+| `generate_data.py` | Generates the synthetic customer dataset |
+| `preprocess.py` | Cleans, encodes and scales the data |
+| `validate.py` | Validates inputs before K-Means |
+| `segmentation.py` | K-Means clustering with edge case handling |
+| `main.py` | Runs the full pipeline end to end |
+| `test_segmentation.py` | Unit tests for the clustering logic |
+| `test_pipeline.py` | End-to-end tests for the full workflow |
+
+## Implementation Details
+
+The workflow in `main.py` runs these steps:
+
+1. Generate the dataset if `data/customers.csv` does not exist.
+2. Preprocess: remove duplicates and missing values, encode Gender, scale features with StandardScaler.
+3. Validate the data (columns, missing, infinite and negative values, enough rows, correct scaling).
+4. Run K-Means (k-means++ initialization, `n_init=10`, fixed `random_state=42` for reproducible results).
+5. Save the segmented customers to `data/customers_segmented.csv`.
+
+**Edge cases handled in `segmentation.py`:**
+- Empty data raises a clear error.
+- Invalid K (less than 1) raises an error.
+- K larger than the number of rows or distinct points is reduced automatically.
+- If any cluster ends up empty, K is reduced and the model is retrained.
+
+## Results
+
+With K = 3, the customers split into three segments:
+
+| Cluster | Profile | Size |
+|---|---|---|
+| 0 | Medium income, medium spending | 70 |
+| 1 | Young, low income, very frequent purchases | 70 |
+| 2 | High income, rare purchases, high order value | 60 |
+
 ## How to Run
+
+1. Install packages: `pip install -r requirements.txt`
+2. Run the full pipeline: `python main.py`
+3. Run all tests: `pytest -v`
