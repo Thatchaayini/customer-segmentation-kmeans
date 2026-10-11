@@ -106,3 +106,18 @@ Run it with `python visualization.py`.
 
 ![PCA](images/pca_clusters.png)
 ![t-SNE](images/tsne_clusters.png)
+## Interactive Dashboard
+
+Implemented in `dashboard.py` with Streamlit and Plotly. Run it with:
+
+```
+streamlit run dashboard.py
+```
+
+Features:
+- Slider to choose the number of clusters (K) and see the metrics update live
+- Switch between PCA and t-SNE projections
+- Hover over any point to see customer details
+- Filter which clusters are shown
+- Compare any feature across clusters with a box plot
+- Cluster profile table and CSV download of the segmented data
