@@ -135,3 +135,21 @@ Implemented in `tuning.py`. A grid search tries every combination of these K-Mea
 84 combinations are evaluated (silhouette, Calinski-Harabasz, Davies-Bouldin, inertia). Full results are saved to `data/tuning_results.csv`. Run it with `python tuning.py`.
 
 **Findings:** The best `n_clusters` is 6 (silhouette 0.502), which matches the evaluation metrics. The top 10 combinations have identical scores, so `init`, `n_init` and `max_iter` make no difference on this dataset. The clusters are well separated, so K-Means is stable and always reaches the same result. The number of clusters is the only parameter that matters here.
+## Testing
+
+All tests are written with pytest. Run them with:
+
+```
+pytest -v
+```
+
+| Test file | What it covers |
+|---|---|
+| `test_segmentation.py` | K-Means clustering and edge cases (empty data, invalid K, empty clusters) |
+| `test_pipeline.py` | End-to-end workflow and reproducibility |
+| `test_evaluation.py` | Evaluation metrics and K range comparison |
+| `test_visualization.py` | PCA, t-SNE and plot saving |
+| `test_tuning.py` | Hyperparameter grid search |
+| `test_metrics_and_plots.py` | Extra checks: good vs bad clustering scores, inertia trend, PCA reproducibility, image output |
+
+Total: 36 tests, all passing.
