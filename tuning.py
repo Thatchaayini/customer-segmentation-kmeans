@@ -7,7 +7,7 @@ from sklearn.metrics import (
     davies_bouldin_score,
     silhouette_score,
 )
-
+from config import RANDOM_STATE
 from preprocess import preprocess
 
 PARAM_GRID = {
@@ -18,7 +18,7 @@ PARAM_GRID = {
 }
 
 
-def tune_kmeans(X_scaled, param_grid=None, random_state=42):
+def tune_kmeans(X_scaled, param_grid=None, random_state=RANDOM_STATE):
     """Try every parameter combination and rank them by silhouette score."""
     grid = param_grid or PARAM_GRID
     keys = list(grid)

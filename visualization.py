@@ -6,13 +6,13 @@ import matplotlib.pyplot as plt
 import pandas as pd
 from sklearn.decomposition import PCA
 from sklearn.manifold import TSNE
-
+from config import RANDOM_STATE
 from preprocess import preprocess
 from segmentation import segment_customers
 
 
 def reduce_pca(X_scaled, n_components=2):
-    pca = PCA(n_components=n_components, random_state=42)
+    pca = PCA(n_components=n_components, random_state=RANDOM_STATE)
     coords = pca.fit_transform(X_scaled)
     return coords, pca.explained_variance_ratio_
 
@@ -24,8 +24,9 @@ def reduce_tsne(X_scaled, n_components=2, perplexity=30):
         n_components=n_components,
         perplexity=perplexity,
         init="pca",
-        random_state=42,
-    )
+          random_state=RANDOM_STATE,
+      
+ )
     return tsne.fit_transform(X_scaled)
 
 

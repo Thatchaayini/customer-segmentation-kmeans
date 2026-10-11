@@ -1,8 +1,10 @@
 import pandas as pd
 from sklearn.preprocessing import StandardScaler
 
+from config import DATA_PATH, FEATURE_COLUMNS, GENDER_MAP
 
-def load_data(path="data/customers.csv"):
+
+def load_data(path=DATA_PATH):
     return pd.read_csv(path)
 
 
@@ -15,7 +17,7 @@ def clean_data(df):
 def encode_features(df):
     # Gender (Male/Female) -> numbers (0/1)
     df = df.copy()
-    df["Gender"] = df["Gender"].map({"Male": 0, "Female": 1})
+    df["Gender"] = df["Gender"].map(GENDER_MAP)
     return df
 
 
@@ -25,13 +27,12 @@ def scale_features(df, columns):
     return pd.DataFrame(scaled, columns=columns), scaler
 
 
-def preprocess(path="data/customers.csv"):
+def preprocess(path=DATA_PATH):
     df = load_data(path)
     df = clean_data(df)
     df = encode_features(df)
 
-    feature_cols = ["Age", "Gender", "AnnualIncome", "PurchaseFrequency", "AvgOrderValue"]
-    X_scaled, scaler = scale_features(df, feature_cols)
+    X_scaled, scaler = scale_features(df, FEATURE_COLUMNS)
     return df, X_scaled, scaler
 
 

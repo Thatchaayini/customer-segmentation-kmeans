@@ -1,7 +1,7 @@
 import pandas as pd
 from sklearn.cluster import KMeans
 from sklearn.preprocessing import StandardScaler
-
+from config import DEFAULT_K, INIT_METHOD, N_INIT, RANDOM_STATE
 
 def load_data():
     """Sample customer data (annual income in k$, spending score 1-100)."""
@@ -12,8 +12,14 @@ def load_data():
     })
 
 
-def build_model(n_clusters=3):
-    return KMeans(n_clusters=n_clusters, init="k-means++", n_init=10, random_state=42)
+def build_model(n_clusters=DEFAULT_K):
+    return KMeans(
+        n_clusters=n_clusters,
+        init=INIT_METHOD,
+        n_init=N_INIT,
+        random_state=RANDOM_STATE,
+    )
+    
 
 
 def main():
@@ -23,7 +29,7 @@ def main():
     scaler = StandardScaler()
     scaled = scaler.fit_transform(features)
 
-    model = build_model(n_clusters=3)
+    model = model = build_model()
     df["Cluster"] = model.fit_predict(scaled)
 
     print(df)
