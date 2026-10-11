@@ -16,3 +16,6 @@ FEATURE_COLUMNS = [
     "AvgOrderValue",
 ]
 GENDER_MAP = {"Male": 0, "Female": 1}
+LINKAGE = "ward"
+DBSCAN_EPS = 1.2
+DBSCAN_MIN_SAMPLES = 5
