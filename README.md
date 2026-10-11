@@ -121,3 +121,17 @@ Features:
 - Filter which clusters are shown
 - Compare any feature across clusters with a box plot
 - Cluster profile table and CSV download of the segmented data
+## Hyperparameter Tuning
+
+Implemented in `tuning.py`. A grid search tries every combination of these K-Means parameters and ranks them by silhouette score:
+
+| Parameter | Values tried |
+|---|---|
+| `n_clusters` | 2 to 8 |
+| `init` | k-means++, random |
+| `n_init` | 5, 10, 20 |
+| `max_iter` | 100, 300 |
+
+84 combinations are evaluated (silhouette, Calinski-Harabasz, Davies-Bouldin, inertia). Full results are saved to `data/tuning_results.csv`. Run it with `python tuning.py`.
+
+**Findings:** The best `n_clusters` is 6 (silhouette 0.502), which matches the evaluation metrics. The top 10 combinations have identical scores, so `init`, `n_init` and `max_iter` make no difference on this dataset. The clusters are well separated, so K-Means is stable and always reaches the same result. The number of clusters is the only parameter that matters here.
