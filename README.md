@@ -150,6 +150,22 @@ pytest -v
 | `test_evaluation.py` | Evaluation metrics and K range comparison |
 | `test_visualization.py` | PCA, t-SNE and plot saving |
 | `test_tuning.py` | Hyperparameter grid search |
-| `test_metrics_and_plots.py` | Extra checks: good vs bad clustering scores, inertia trend, PCA reproducibility, image output |
+| `test_metrics_and_plots.py` | Extra checks: good vs bad clustering scores, inertia trend, PCA reproducibility, image output | `test_benchmark.py` | Performance benchmark: dataset builder, stage timings, benchmark output |
 
-Total: 36 tests, all passing.
+Total: 42 tests, all passing.
+## Performance Testing
+
+Implemented in `benchmark.py`. It runs the full workflow (clean, encode, scale, validate, cluster, evaluate, PCA) on datasets of increasing size, built by resampling the base data with small random noise. It measures the time of every stage and the peak memory. Run it with `python benchmark.py`. Results are saved to `data/performance_results.csv`.
+
+| Rows | Total time | Rows per second | Peak memory |
+|---|---|---|---|
+| 200 | 0.05 s | 4,108 | 0.7 MB |
+| 1,000 | 0.09 s | 10,667 | 15 MB |
+| 5,000 | 0.36 s | 13,829 | 382 MB |
+| 10,000 | 1.33 s | 7,497 | 1,527 MB |
+
+**Findings:**
+- The full workflow handles 10,000 customers in about 1.3 seconds.
+- K-Means itself is fast (0.08 s for 10,000 rows). Cleaning, encoding, scaling and validation each take a few milliseconds.
+- The evaluation stage (silhouette score) is the bottleneck, over 90% of the total time for large data. Doubling the rows roughly quadruples its time, because the silhouette score compares every point with all other points. Memory also grows about four times when the rows double.
+- Possible improvement for much larger data: compute the silhouette score on a random sample using the `sample_size` parameter.
