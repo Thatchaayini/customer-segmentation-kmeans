@@ -36,16 +36,17 @@ metrics = evaluate_clustering(X_scaled, result["Cluster"].to_numpy())
 # Metrics row
 c1, c2, c3, c4 = st.columns(4)
 c1.metric("Clusters used", used_k)
-c2.metric("Silhouette (higher is better)", metrics["silhouette"])
-c3.metric("Calinski-Harabasz (higher is better)", metrics["calinski_harabasz"])
-c4.metric("Davies-Bouldin (lower is better)", metrics["davies_bouldin"])
-
+c2.metric("Silhouette", metrics["silhouette"], help="Higher is better. Shows how well separated the clusters are (max 1).")
+c3.metric("Calinski-Harabasz", metrics["calinski_harabasz"], help="Higher is better.")
+c4.metric("Davies-Bouldin", metrics["davies_bouldin"], help="Lower is better.")
+st.caption("Silhouette and Calinski-Harabasz: higher is better. Davies-Bouldin: lower is better.")
 # 2D projection
 if method == "PCA":
     coords, variance = reduce_pca(X_scaled)
     st.caption(f"PCA explains {variance.sum():.1%} of the variance")
 else:
     coords = get_tsne(X_scaled)
+    st.caption("t-SNE shows local groups well, but distances between clusters are not exact.")
 
 plot_df = result.copy()
 plot_df["x"] = coords[:, 0]
