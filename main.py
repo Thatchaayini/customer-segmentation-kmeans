@@ -1,11 +1,12 @@
 import os
 
+from config import DATA_PATH
+from config import SEGMENTED_PATH as OUTPUT_PATH
 from generate_data import generate_data, save_data
 from preprocess import preprocess
+from segmentation import cluster_summary, segment_customers
 from validate import validate_inputs
-from segmentation import segment_customers, cluster_summary
 
-from config import DATA_PATH, SEGMENTED_PATH as OUTPUT_PATH
 
 def run_pipeline(n_clusters=3, data_path=DATA_PATH, output_path=OUTPUT_PATH):
     """Full workflow: data -> preprocess -> validate -> K-Means -> save."""

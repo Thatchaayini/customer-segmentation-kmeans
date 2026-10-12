@@ -1,4 +1,5 @@
 import os
+
 import pandas as pd
 
 from generate_data import generate_data, save_data

@@ -7,6 +7,7 @@ from sklearn.metrics import (
     davies_bouldin_score,
     silhouette_score,
 )
+
 from config import RANDOM_STATE
 from preprocess import preprocess
 

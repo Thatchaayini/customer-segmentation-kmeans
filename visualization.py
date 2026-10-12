@@ -1,11 +1,12 @@
 import os
 
 import matplotlib
+
 matplotlib.use("Agg")  # save charts as image files, no window needed
 import matplotlib.pyplot as plt
-import pandas as pd
 from sklearn.decomposition import PCA
 from sklearn.manifold import TSNE
+
 from config import RANDOM_STATE
 from preprocess import preprocess
 from segmentation import segment_customers

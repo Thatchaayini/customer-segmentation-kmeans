@@ -1,7 +1,7 @@
 import numpy as np
 import pandas as pd
 
-from visualization import reduce_pca, reduce_tsne, plot_clusters
+from visualization import plot_clusters, reduce_pca, reduce_tsne
 
 
 def make_data():

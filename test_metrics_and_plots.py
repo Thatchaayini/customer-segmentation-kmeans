@@ -3,7 +3,7 @@ import pandas as pd
 import pytest
 
 from evaluation import evaluate_clustering, evaluate_k_range
-from visualization import reduce_pca, visualize_segments, plot_clusters
+from visualization import plot_clusters, reduce_pca, visualize_segments
 
 
 def blobs():

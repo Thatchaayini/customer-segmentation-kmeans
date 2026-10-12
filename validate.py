@@ -1,4 +1,5 @@
 import numpy as np
+
 from preprocess import preprocess
 
 REQUIRED_COLUMNS = ["Age", "Gender", "AnnualIncome", "PurchaseFrequency", "AvgOrderValue"]

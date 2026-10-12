@@ -3,7 +3,7 @@ import streamlit as st
 
 from evaluation import evaluate_clustering
 from preprocess import preprocess
-from segmentation import segment_customers, cluster_summary
+from segmentation import cluster_summary, segment_customers
 from visualization import reduce_pca, reduce_tsne
 
 st.set_page_config(page_title="Customer Segmentation", layout="wide")

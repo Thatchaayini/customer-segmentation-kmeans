@@ -1,7 +1,9 @@
 import pandas as pd
 from sklearn.cluster import KMeans
 from sklearn.preprocessing import StandardScaler
+
 from config import DEFAULT_K, INIT_METHOD, N_INIT, RANDOM_STATE
+
 
 def load_data():
     """Sample customer data (annual income in k$, spending score 1-100)."""

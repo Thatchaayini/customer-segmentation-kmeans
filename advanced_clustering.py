@@ -1,6 +1,7 @@
 import os
 
 import matplotlib
+
 matplotlib.use("Agg")  # save charts as image files, no window needed
 import matplotlib.pyplot as plt
 from scipy.cluster.hierarchy import dendrogram, linkage

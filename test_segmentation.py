@@ -1,7 +1,7 @@
 import pandas as pd
 import pytest
 
-from segmentation import segment_customers, cluster_summary
+from segmentation import cluster_summary, segment_customers
 
 
 def make_data():
