@@ -1,4 +1,4 @@
-import plotly.express as px
+﻿import plotly.express as px
 import streamlit as st
 
 from evaluation import evaluate_clustering
@@ -68,7 +68,7 @@ with left:
         hover_data=["CustomerID"] + FEATURES,
         category_orders={"Cluster": clusters},
     )
-    st.plotly_chart(fig, use_container_width=True)
+    st.plotly_chart(fig, width='stretch')
 
 with right:
     feature = st.selectbox("Compare a feature across clusters", FEATURES)
@@ -77,10 +77,10 @@ with right:
         view, x="Cluster", y=feature, color="Cluster",
         category_orders={"Cluster": clusters},
     )
-    st.plotly_chart(box, use_container_width=True)
+    st.plotly_chart(box, width='stretch')
 
 st.subheader("Cluster profiles (average values)")
-st.dataframe(cluster_summary(result).round(2), use_container_width=True)
+st.dataframe(cluster_summary(result).round(2), width='stretch')
 
 st.download_button(
     "Download segmented data (CSV)",
