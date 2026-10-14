@@ -20,3 +20,6 @@ LINKAGE = "ward"
 DBSCAN_EPS = 1.2
 DBSCAN_MIN_SAMPLES = 5
 CACHE_DIR = ".cache"
+LOG_DIR = "logs"
+LOG_FILE = "logs/segmentation.log"
+LOG_LEVEL = "INFO"

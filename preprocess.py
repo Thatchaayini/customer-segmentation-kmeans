@@ -2,8 +2,10 @@ import pandas as pd
 from sklearn.preprocessing import StandardScaler
 
 from config import DATA_PATH, FEATURE_COLUMNS, GENDER_MAP
+from logger import timed_step
 
 
+@timed_step
 def load_data(path=DATA_PATH):
     return pd.read_csv(path)
 
@@ -27,6 +29,7 @@ def scale_features(df, columns):
     return pd.DataFrame(scaled, columns=columns), scaler
 
 
+@timed_step
 def preprocess(path=DATA_PATH):
     df = load_data(path)
     df = clean_data(df)
