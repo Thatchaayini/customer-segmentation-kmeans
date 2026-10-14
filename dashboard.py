@@ -27,6 +27,7 @@ df, X_scaled = load_data()
 
 # Sidebar controls
 st.sidebar.header("Controls")
+st.sidebar.caption("Change K to regroup customers. Use the filter below to focus on specific clusters.")
 k = st.sidebar.slider("Number of clusters (K)", 2, 8, 3)
 method = st.sidebar.radio("Projection", ["PCA", "t-SNE"])
 
@@ -45,7 +46,8 @@ if method == "PCA":
     coords, variance = reduce_pca(X_scaled)
     st.caption(f"PCA explains {variance.sum():.1%} of the variance")
 else:
-    coords = get_tsne(X_scaled)
+    with st.spinner("Computing t-SNE..."):
+        coords = get_tsne(X_scaled)
     st.caption("t-SNE shows local groups well, but distances between clusters are not exact.")
 
 plot_df = result.copy()
@@ -78,7 +80,7 @@ with right:
     st.plotly_chart(box, use_container_width=True)
 
 st.subheader("Cluster profiles (average values)")
-st.dataframe(cluster_summary(result), use_container_width=True)
+st.dataframe(cluster_summary(result).round(2), use_container_width=True)
 
 st.download_button(
     "Download segmented data (CSV)",
