@@ -169,3 +169,27 @@ Implemented in `benchmark.py`. It runs the full workflow (clean, encode, scale, 
 - K-Means itself is fast (0.08 s for 10,000 rows). Cleaning, encoding, scaling and validation each take a few milliseconds.
 - The evaluation stage (silhouette score) is the bottleneck, over 90% of the total time for large data. Doubling the rows roughly quadruples its time, because the silhouette score compares every point with all other points. Memory also grows about four times when the rows double.
 - Possible improvement for much larger data: compute the silhouette score on a random sample using the `sample_size` parameter.
+
+## Advanced Features
+
+- **Hierarchical clustering and DBSCAN** (`advanced_clustering.py`): Ward-linkage hierarchical clustering, DBSCAN with noise detection, and a saved dendrogram (`images/dendrogram.png`).
+- **Interactive dashboard** (`dashboard.py`): Streamlit app with a K slider, PCA / t-SNE projection, cluster filter, metric tooltips and a cluster profile table. Run it with `streamlit run dashboard.py`.
+
+## Optimization Techniques
+
+- **Parallel tuning and caching** (`fast_tuning.py`): `joblib.Parallel` runs parameter combinations in parallel and `joblib.Memory` caches results on disk. On the 200-row dataset, a warm cache cut tuning time from 3.98s to 0.46s. Parallel processing alone did not help on this small dataset because process overhead dominates, but it should help on larger data.
+- **Shared configuration** (`config.py`): random state, paths, feature columns and log settings are defined once instead of being hardcoded.
+
+## Logging and Monitoring
+
+- `logger.py` provides `get_logger` and the `@timed_step` decorator, which logs the start, finish time and any errors of a step to the console and `logs/segmentation.log`.
+- Log settings (`LOG_FILE`, `LOG_LEVEL`) are in `config.py`.
+
+## Testing
+
+- Run all tests with `pytest -v` (52 tests currently pass).
+- Code style is checked with `ruff check .`.
+
+## User Testing
+
+- Self-testing notes and the fixes made are in `FEEDBACK.md`.
