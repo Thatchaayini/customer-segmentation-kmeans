@@ -1,4 +1,4 @@
-# customer-segmentation-kmeans
+﻿# customer-segmentation-kmeans
 Customer Segmentation using K-Means clustering
 ## K-Means Algorithm Summary
 
@@ -152,7 +152,7 @@ pytest -v
 | `test_evaluation.py` | Evaluation metrics and K range comparison |
 | `test_visualization.py` | PCA, t-SNE and plot saving |
 | `test_tuning.py` | Hyperparameter grid search |
-|| `test_metrics_and_plots.py` | Extra checks: good vs bad clustering scores, inertia trend, PCA reproducibility, image output |
+| `test_metrics_and_plots.py` | Extra checks: good vs bad clustering scores, inertia trend, PCA reproducibility, image output |
 | `test_benchmark.py` | Performance benchmark: dataset builder, stage timings, benchmark output |
 
 Total: 52 tests, all passing.
