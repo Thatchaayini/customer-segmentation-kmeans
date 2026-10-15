@@ -156,6 +156,7 @@ pytest -v
 | `test_benchmark.py` | Performance benchmark: dataset builder, stage timings, benchmark output |
 
 Total: 52 tests, all passing.
+
 ## Performance Testing
 
 Implemented in `benchmark.py`. It runs the full workflow (clean, encode, scale, validate, cluster, evaluate, PCA) on datasets of increasing size, built by resampling the base data with small random noise. It measures the time of every stage and the peak memory. Run it with `python benchmark.py`. Results are saved to `data/performance_results.csv`.
@@ -192,3 +193,7 @@ Implemented in `benchmark.py`. It runs the full workflow (clean, encode, scale, 
 ## User Testing
 
 - Self-testing notes and the fixes made are in `FEEDBACK.md`.
+
+## Live Demo
+
+[Customer Segmentation Dashboard](https://customer-segmentation-thatchaa.streamlit.app)
