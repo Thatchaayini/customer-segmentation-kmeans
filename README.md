@@ -197,3 +197,7 @@ Implemented in `benchmark.py`. It runs the full workflow (clean, encode, scale, 
 ## Live Demo
 
 [Customer Segmentation Dashboard](https://customer-segmentation-thatchaa.streamlit.app)
+
+## Demo Video
+
+[Watch the demo video](https://drive.google.com/file/d/1P8VIy4MtSZFEwbLec5ZHyJRGHkUs0oZZ/view?usp=sharing)
