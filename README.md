@@ -1,6 +1,13 @@
 ﻿# Customer Segmentation using K-Means
 
 Customer segmentation using K-Means clustering on a synthetic customer dataset, with preprocessing, validation, evaluation, visualization, hyperparameter tuning, an interactive Streamlit dashboard, tests and performance benchmarks.
+## Problem
+
+Businesses have many customers with different incomes and buying habits, and treating them all the same wastes marketing effort.
+
+## Solution
+
+This project groups customers into segments with K-Means clustering, so each segment can be understood and targeted separately. It includes a full pipeline, evaluation, visualization and an interactive dashboard.
 
 - **Live Demo:** [Customer Segmentation Dashboard](https://customer-segmentation-thatchaa.streamlit.app)
 - **Demo Video:** [Watch the demo video](https://drive.google.com/file/d/1P8VIy4MtSZFEwbLec5ZHyJRGHkUs0oZZ/view?usp=sharing)
